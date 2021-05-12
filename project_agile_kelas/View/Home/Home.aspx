@@ -6,5 +6,14 @@
     <br />
 
     <asp:GridView ID="gvCatatan" runat="server"></asp:GridView>
+    
+    <asp:TextBox ID="txtId" runat="server" />
+    <asp:TextBox runat="server" />
+    <asp:TextBox runat="server" />
+    <asp:TextBox runat="server" />
+    <asp:TextBox runat="server" />
 
+    <asp:Button ID="btnInsert" Text="Insert" runat="server" />
+    <asp:Button ID="btnUpdate" Text="Update" runat="server" />
+    <asp:Button ID="btnDelete" Text="Delete" runat="server" />
 </asp:Content>
