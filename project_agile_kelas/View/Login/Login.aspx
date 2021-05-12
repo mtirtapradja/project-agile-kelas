@@ -6,7 +6,7 @@
     <div class="email-input">
         <asp:Label CssClass="email-input-label" runat="server">Username :
         </asp:Label>
-        <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
     </div>
 
     <div class="password-input">
