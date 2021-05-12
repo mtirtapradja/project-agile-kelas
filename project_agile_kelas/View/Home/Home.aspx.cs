@@ -13,5 +13,20 @@ namespace project_agile_kelas.View.Home
         {
 
         }
+
+        protected void btnInsert_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

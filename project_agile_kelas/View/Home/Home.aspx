@@ -30,9 +30,9 @@
 
     <div>
         <asp:Label ID="lblError" Text="" runat="server" />
-        <asp:Button ID="btnInsert" Text="Insert" runat="server" />
-        <asp:Button ID="btnUpdate" Text="Update" runat="server" />
-        <asp:Button ID="btnDelete" Text="Delete" runat="server" />
+        <asp:Button ID="btnInsert" Text="Insert" OnClick="btnInsert_Click" runat="server" />
+        <asp:Button ID="btnUpdate" Text="Update" OnClick="btnUpdate_Click" runat="server" />
+        <asp:Button ID="btnDelete" Text="Delete" OnClick="btnDelete_Click" runat="server" />
     </div>
     
     
