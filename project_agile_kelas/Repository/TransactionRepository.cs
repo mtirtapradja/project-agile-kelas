@@ -10,6 +10,14 @@ namespace project_agile_kelas.Repository
     {
         private static DatabaseEntities db = new DatabaseEntities();
 
+        public static List<TransactionHeader> GetAllTrasactions()
+        {
+            return (from x in db.TransactionHeaders select x).ToList();
+        }
+        public static TransactionHeader getTransactionById(int id)
+        {
+            return (from x in db.TransactionHeaders where x.transactionId == id select x).FirstOrDefault(); 
+        }
         public static bool InsertTransaction(TransactionHeader newTransaction)
         {
             if (newTransaction != null)
