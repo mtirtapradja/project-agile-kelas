@@ -13,5 +13,15 @@ namespace project_agile_kelas.View
         {
 
         }
+
+        protected void lbRegister_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Register.aspx");
+        }
+
+        protected void lbLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 }
