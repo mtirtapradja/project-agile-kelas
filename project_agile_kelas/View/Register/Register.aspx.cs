@@ -22,13 +22,13 @@ namespace project_agile_kelas.View.Register
 
             if (!password.Equals(confirmpasssword))
             {
-                lblError.Text = "Password and confirm password must be same!"
+                lblError.Text = "Password and confirm password must be same!";
                 return;
             }
 
             //tinggal masukin user repository
 
-            lblError.Text="Register success"
+            lblError.Text = "Register success";
         }
     }
 }
