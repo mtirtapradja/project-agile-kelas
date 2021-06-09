@@ -36,6 +36,23 @@ namespace project_agile_kelas.Handler
             return userRepo.getUserById(id);
         }
 
+        public static bool UpdateUser(int userId, string fullname, String password, String email)
+        {
+            UserRepository userRepository = UserRepository.getInstance();
+            User user = userRepository.getUserById(userId);
+
+            if (user != null)
+            {
+                user.userFullName = fullname;
+                user.userPassword = password;
+                user.userEmail = email;
+                user.updated_at = DateTime.Now;
+
+                return userRepository.updateUser(user);
+            }
+            return false;
+        }
+
     }
 
 }

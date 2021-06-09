@@ -42,6 +42,15 @@ namespace project_agile_kelas.Repository
             return newUser;
         }
 
+        public bool updateUser(User user)
+        {
+            if (user != null)
+            {
+                db.SaveChanges();
+            }
+            return false;
+        }
+
         public void setUserToDatabase()
         {
 
