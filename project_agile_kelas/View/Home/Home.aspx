@@ -1,12 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Main.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="project_agile_kelas.View.Home.Insert" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>HOME</h2>
     <br />
+    <asp:ScriptManager runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <asp:GridView ID="gvCatatan" runat="server" AutoGenerateColumns="False">
+                <Columns>
+                    <asp:BoundField DataField="TransactionType.transactionTypeName" HeaderText="Transaction Type" SortExpression="TransactionType.transactionTypeName" />
+                    <asp:BoundField DataField="price" HeaderText="Money" SortExpression="price" />
+                    <asp:BoundField DataField="itemDescription" HeaderText="Description" SortExpression="description" />
+                    <asp:BoundField DataField="created_at" HeaderText="Created At" SortExpression="created_at" />
+                </Columns>
+            </asp:GridView>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 
-    <asp:GridView ID="gvCatatan" runat="server"></asp:GridView>
-    
+
     <div>
         <asp:Label ID="lblName" runat="server" />
     </div>
@@ -24,12 +37,12 @@
         <asp:TextBox ID="txtTypeId" TextMode="Number" runat="server" />
     </div>--%>
     <div>
-         <asp:Label Text="Description" runat="server" />
+        <asp:Label Text="Description" runat="server" />
         <asp:TextBox ID="txtDescription" runat="server" />
     </div>
     <div>
-         <asp:Label Text="Price" runat="server" />
-         <asp:TextBox ID="txtPrice" TextMode="Number" runat="server" />
+        <asp:Label Text="Price" runat="server" />
+        <asp:TextBox ID="txtPrice" TextMode="Number" runat="server" />
     </div>
 
     <div>
@@ -43,5 +56,5 @@
         <asp:Button ID="btnUpdate" Text="Update" OnClick="btnUpdate_Click" runat="server" />
         <asp:Button ID="btnDelete" Text="Delete" OnClick="btnDelete_Click" runat="server" />
     </div>
-    
+
 </asp:Content>

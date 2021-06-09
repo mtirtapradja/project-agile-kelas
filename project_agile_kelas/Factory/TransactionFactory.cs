@@ -15,8 +15,8 @@ namespace project_agile_kelas.Factory
             t.transactionTypeId = typeId;
             t.itemDescription = description;
             t.price = price;
-            //t.created_at = DateTime.Now;
-            //t.updated_at = DateTime.Now;
+            t.created_at = DateTime.Now;
+            t.updated_at = DateTime.Now;
             return t;
         }
 

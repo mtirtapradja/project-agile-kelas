@@ -14,6 +14,11 @@ namespace project_agile_kelas.Repository
         {
             return (from x in db.TransactionHeaders select x).ToList();
         }
+        public static List<TransactionHeader> GetAllTrasactionByUser(int userId)
+        {
+            return (from x in db.TransactionHeaders where x.userId == userId select x).ToList();
+        }
+
         public static TransactionHeader getTransactionById(int id)
         {
             return (from x in db.TransactionHeaders where x.transactionId == id select x).FirstOrDefault(); 
