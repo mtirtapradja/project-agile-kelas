@@ -2,28 +2,37 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
     <h2>Register</h2>
 
-    <div>
-        <asp:Label Text="Name" runat="server" />
-        <asp:TextBox runat="server" ID="txtName"/>
+    <div class="form-floating">
+        <%--<asp:Label Text="Name" runat="server" />--%>
+        <asp:TextBox CssClass="form-control" runat="server" Width="500px" ID="txtName"/>
+        <label for="floatingPassword">Name</label>
     </div>
-    <div>
-        <asp:Label Text="Email" runat="server" />
-        <asp:TextBox runat="server" ID="txtEmail"/>
+    <br />
+    <div class="form-floating">
+        <%--<asp:Label Text="Email" runat="server" />--%>
+        <asp:TextBox CssClass="form-control" runat="server" Width="500px" ID="txtEmail"/>
+        <label for="floatingPassword">Email</label>
     </div>
-    <div>
-        <asp:Label Text="Password" runat="server" />
-        <asp:TextBox runat="server" ID="txtPassword" TextMode="Password"/>
+    <br />
+    <div class="form-floating">
+        <asp:TextBox CssClass="form-control" runat="server" ID="txtPassword" Width="500px" TextMode="Password"/>
+        <label for="floatingPassword">Password</label>
     </div>
-     <div>
-        <asp:Label Text="Confirm Password" runat="server" />
-        <asp:TextBox runat="server" ID="txtConfirmPassword" TextMode="Password"/>
+    <br />
+     <div class="form-floating">
+        <%--<asp:Label Text="Confirm Password" runat="server" />--%>
+        <asp:TextBox CssClass="form-control" runat="server" ID="txtConfirmPassword" Width="500px" TextMode="Password"/>
+         <label for="floatingPassword">Confirm Password</label>
     </div>
-    <div>
-        <asp:Button Text="Register" runat="server" ID="btnRegister" OnClick="btnRegister_Click"/>
-    </div>
+    <br />
     <div>
         <asp:Label Text="" ID="lblError" ForeColor="Red" runat="server" />
+    </div>
+    <div class="login-btn">
+        <asp:Button CssClass="btn btn-primary" Text="Register" runat="server" ID="btnRegister" Width="150px" OnClick="btnRegister_Click"/>
     </div>
 </asp:Content>
