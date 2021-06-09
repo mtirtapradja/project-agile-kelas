@@ -3,29 +3,26 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%--<link href="HomeStyle.css" rel="stylesheet" />--%>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="HomeStyle.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>HOME</h2>
     <br />
-    <asp:ScriptManager runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <asp:GridView ID="gvCatatan" runat="server" AutoGenerateColumns="False">
-                <Columns>
-                    <asp:BoundField DataField="TransactionType.transactionTypeName" HeaderText="Transaction Type" SortExpression="TransactionType.transactionTypeName" />
-                    <asp:BoundField DataField="price" HeaderText="Money" SortExpression="price" />
-                    <asp:BoundField DataField="itemDescription" HeaderText="Description" SortExpression="description" />
-                    <asp:BoundField DataField="created_at" HeaderText="Created At" SortExpression="created_at" />
-                </Columns>
-            </asp:GridView>
-        </ContentTemplate>
-    </asp:UpdatePanel>
-
-
     <div>
-        <asp:GridView ID="gvCatatan" runat="server"></asp:GridView>
+        <asp:ScriptManager runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <asp:GridView ID="gvCatatan" CssClass="table table-striped" runat="server" AutoGenerateColumns="False">
+                    <Columns>
+                        <asp:BoundField DataField="TransactionType.transactionTypeName" HeaderText="Transaction Type" SortExpression="TransactionType.transactionTypeName" />
+                        <asp:BoundField DataField="price" HeaderText="Money" SortExpression="price" />
+                        <asp:BoundField DataField="itemDescription" HeaderText="Description" SortExpression="description" />
+                        <asp:BoundField DataField="created_at" HeaderText="Created At" SortExpression="created_at" />
+                    </Columns>
+                </asp:GridView>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
-
     <div>
         <asp:Label ID="lblName" runat="server" />
     </div>
@@ -40,21 +37,8 @@
             </div>
         </nav>
     </div>
+
     <div>
-         <asp:Label Text="User ID" runat="server" />
-        <asp:TextBox ID="txtUserId" TextMode="Number" runat="server" />
-    </div>--%>
-    <%--<div>
-         <asp:Label Text="User Type ID" runat="server" />
-        <asp:TextBox ID="txtTypeId" TextMode="Number" runat="server" />
-    </div>--%>
-    <div>
-        <asp:Label Text="Description" runat="server" />
-        <asp:TextBox ID="txtDescription" runat="server" />
-    </div>
-    <div>
-        <asp:Label Text="Price" runat="server" />
-        <asp:TextBox ID="txtPrice" TextMode="Number" runat="server" />
         <nav class="navbar navbar-light bg-light">
             <div class="input-group">
                 <div class="input-group-prepend">
