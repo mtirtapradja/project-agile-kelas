@@ -60,6 +60,37 @@ namespace project_agile_kelas.Controller
             }
             return response;
         }
+
+        public static String CheckUpdate(int userId,String fullname, String password, String confirm, String email)
+        {
+            String response = "";
+            if (fullname == "")
+            {
+                response = "name must be filled";
+            }
+            else if(password == "")
+            {
+                response = "password must be filled";
+            }
+            else if(confirm == "")
+            {
+                response = "confirm password must be filled";
+            }
+            else if (!password.Equals(confirm))
+            {
+                response = "password not match confirm password";
+            }
+            else if (email == "")
+            {
+                response = "email must be filled";
+            }
+            else
+            {
+                UserHandler.UpdateUser(userId, fullname, password, email);
+                response = "Success!";
+            }
+            return response;
+        }
         
         public static User GetUser(string email, string password)
         {

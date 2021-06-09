@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\folder inti\2. Event 2020\5. agile\project new\project_agile_kelas\project_agile_kelas\Model\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Asus\source\repos\project_agile_kelas\project_agile_kelas\Model\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -9,6 +9,11 @@ namespace project_agile_kelas.Controller
 {
     public class TransactionController
     {
+        public static List<TransactionHeader> GetAllTrasactionByUser(int userId)
+        {
+            return TransactionHandler.GetAllTrasactionByUser(userId);
+        }
+
         public static List<TransactionType> GetAllTransactionList()
         {
             return TransactionHandler.GetAllTransactionType();
