@@ -30,6 +30,13 @@ namespace project_agile_kelas.Repository
             return db.Users.Where(x => x.userEmail.Equals(email) && x.userPassword.Equals(password)).FirstOrDefault();
         }
 
+        public User InsertUser(User user) 
+        {
+            User newUser = db.Users.Add(user);
+            db.SaveChanges();
+            return newUser;
+        }
+
         public void setUserToDatabase()
         {
 

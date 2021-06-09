@@ -19,6 +19,17 @@ namespace project_agile_kelas.Factory
             return u;
         }
 
+        public static User Create(string fullName, string password, string email, int userRole)
+        {
+            User u = new User();
+            u.userFullName = fullName;
+            u.userPassword = password;
+            u.userEmail = email;
+            u.userRole = userRole;
+            return u;
+        }
+
+
         public static User Create(string password, string email)
         {
             User u = new User();

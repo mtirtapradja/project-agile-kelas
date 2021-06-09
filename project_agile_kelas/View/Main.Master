@@ -7,17 +7,21 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <link rel="stylesheet" href="MainStyle.css" />
 </head>
 <body>
     <form id="form1" runat="server">
+        <div class="navbar">
+            <h1>Pembukuan</h1>
+            <div class="nav">
+                <asp:LinkButton CssClass="navbar_component" Text="Register" ID="lbRegister" OnClick="lbRegister_Click" runat="server"></asp:LinkButton>
+                <asp:LinkButton CssClass="navbar_component" Text="Login" ID="lbLogin" OnClick="lbLogin_Click" runat="server" />
+            </div>
+        </div>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 <h2>Welcome</h2>
             </asp:ContentPlaceHolder>
-        </div>
-        <div>
-            <asp:LinkButton Text="Register" ID="lbRegister" OnClick="lbRegister_Click" runat="server"></asp:LinkButton>
-            <asp:LinkButton Text="Login" ID="lbLogin" OnClick="lbLogin_Click" runat="server" />
         </div>
     </form>
 </body>

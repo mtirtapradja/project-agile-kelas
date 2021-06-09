@@ -12,12 +12,20 @@ namespace project_agile_kelas.Handler
     public class UserHandler
     {
         private static UserRepository userRepo = UserRepository.getInstance();
+
         public static bool FindUser(string email, string password)
         {
             User user = userRepo.getUser(email, password);
             if (user == null) return false;
             return true;
         }
+
+        public static User InsertUser(string fullName, string password, string email, int userRole)
+        {
+            User user = UserFactory.Create(fullName, password, email, userRole);
+            return userRepo.InsertUser(user);
+        }
+
     }
 
 }

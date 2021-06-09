@@ -32,7 +32,7 @@ namespace project_agile_kelas.Controller
             return response;
         }
 
-        public static String CheckRegister(string username, string password, string email)
+        public static String CheckRegister(string username, string password, string confirmPassword, string email)
         {
             string response = "";
 
@@ -47,6 +47,15 @@ namespace project_agile_kelas.Controller
             else if(email == "")
             {
                 response = "email must be filled";
+            }
+            else if (!password.Equals(confirmPassword))
+            {
+                response = "password and confirm password must be the same!";
+            }
+            else
+            {
+                UserHandler.InsertUser(username, password, email, 2);
+                response = "Success!";
             }
             return response;
         }

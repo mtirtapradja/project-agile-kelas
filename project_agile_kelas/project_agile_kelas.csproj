@@ -92,6 +92,7 @@
     <Content Include="View\Account\Account.aspx" />
     <Content Include="View\Home\Home.aspx" />
     <Content Include="View\Login\Login.aspx" />
+    <Content Include="View\MainStyle.css" />
     <Content Include="View\Register\Register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>

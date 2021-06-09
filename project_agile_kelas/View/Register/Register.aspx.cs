@@ -1,4 +1,5 @@
-﻿using System;
+﻿using project_agile_kelas.Controller;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,16 +20,10 @@ namespace project_agile_kelas.View.Register
             string name = txtName.Text;
             string password = txtPassword.Text;
             string confirmpasssword = txtConfirmPassword.Text;
+            string email = txtEmail.Text;
 
-            if (!password.Equals(confirmpasssword))
-            {
-                lblError.Text = "Password and confirm password must be same!";
-                return;
-            }
-
-            //tinggal masukin user repository
-
-            lblError.Text = "Register success";
+            string message = UserController.CheckRegister(name, password, confirmpasssword, email);
+            lblError.Text = message;
         }
     }
 }
