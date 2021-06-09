@@ -1,47 +1,56 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Main.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="project_agile_kelas.View.Home.Insert" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <%--<link href="HomeStyle.css" rel="stylesheet" />--%>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>HOME</h2>
-    <br />
+    <div>
+        <asp:GridView ID="gvCatatan" runat="server"></asp:GridView>
+    </div>
 
-    <asp:GridView ID="gvCatatan" runat="server"></asp:GridView>
-    
     <div>
         <asp:Label ID="lblName" runat="server" />
     </div>
 
-    <%--<div>
-        <asp:Label Text="Transaction ID" runat="server" />
-        <asp:TextBox ID="txtId" TextMode="Number" runat="server" />
+    <div>
+        <nav class="navbar navbar-light bg-light">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">&nbsp&nbsp&nbsp&nbspDescription&nbsp&nbsp&nbsp&nbsp</span>
+                </div>
+                <asp:TextBox ID="txtDescription" CssClass="form-control" runat="server" />
+            </div>
+        </nav>
     </div>
     <div>
-         <asp:Label Text="User ID" runat="server" />
-        <asp:TextBox ID="txtUserId" TextMode="Number" runat="server" />
-    </div>--%>
-    <%--<div>
-         <asp:Label Text="User Type ID" runat="server" />
-        <asp:TextBox ID="txtTypeId" TextMode="Number" runat="server" />
-    </div>--%>
-    <div>
-         <asp:Label Text="Description" runat="server" />
-        <asp:TextBox ID="txtDescription" runat="server" />
-    </div>
-    <div>
-         <asp:Label Text="Price" runat="server" />
-         <asp:TextBox ID="txtPrice" TextMode="Number" runat="server" />
+        <nav class="navbar navbar-light bg-light">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAmount&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+                </div>
+                <asp:TextBox ID="txtPrice" CssClass="form-control" TextMode="Number" runat="server" />
+            </div>
+        </nav>
     </div>
 
     <div>
-        <asp:Label Text="Transaction Type" runat="server" />
-        <asp:DropDownList ID="ddlTransactionType" runat="server"></asp:DropDownList>
+        <nav class="navbar navbar-light bg-light">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Transaction Type</span>
+                </div>
+                <asp:DropDownList ID="ddlTransactionType" CssClass="form-control" runat="server"></asp:DropDownList>
+            </div>
+        </nav>
     </div>
 
     <div>
         <asp:Label ID="lblError" Text="" runat="server" />
-        <asp:Button ID="btnInsert" Text="Insert" OnClick="btnInsert_Click" runat="server" />
-        <asp:Button ID="btnUpdate" Text="Update" OnClick="btnUpdate_Click" runat="server" />
-        <asp:Button ID="btnDelete" Text="Delete" OnClick="btnDelete_Click" runat="server" />
+        <asp:Button ID="btnInsert" CssClass="btn btn-primary mb-3" Text="Insert" OnClick="btnInsert_Click" runat="server" />
+        <asp:Button ID="btnUpdate" CssClass="btn btn-warning mb-3" Text="Update" OnClick="btnUpdate_Click" runat="server" />
+        <asp:Button ID="btnDelete" CssClass="btn btn-danger mb-3" Text="Delete" OnClick="btnDelete_Click" runat="server" />
     </div>
-    
+
 </asp:Content>

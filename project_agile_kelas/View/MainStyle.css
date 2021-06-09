@@ -4,28 +4,29 @@
 }
 
 *{
+    box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 .navbar{
+    align-content: center;
+    background-color: rgba(0, 125, 255, 100);
     display: flex;
     justify-content: space-between;
-    align-content: center;
     padding: 20px;
-    background-color: saddlebrown;
 }
 
 .navbar .nav .navbar_component{
+    color: aliceblue;
+    font-size: 20px;
+    height: fit-content;
     margin: 0 10px 0 10px;
     text-decoration: none;
-    color: aliceblue;
-    height: fit-content;
-    
-    font-size: 20px;
 }
-    .navbar .nav {
-        display: flex;
-        align-content: center;
-    }
+
+.navbar .nav {
+    align-content: center;
+    display: flex;
+}
