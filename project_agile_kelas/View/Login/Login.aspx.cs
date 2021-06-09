@@ -1,4 +1,5 @@
 ﻿using project_agile_kelas.Controller;
+using project_agile_kelas.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,17 @@ namespace project_agile_kelas.View
             if (response.Equals(""))
             {
                 lblError.Text = "";
+                User user = UserController.GetUser(email, pass);
+                Session["user"] = user;
+                if (cbRemember.Checked)
+                {
+                    HttpCookie cookie = new HttpCookie("user_auth")
+                    {
+                        Value = user.userId.ToString(),
+                        Expires = DateTime.Now.AddDays(1)
+                    };
+                    Response.Cookies.Add(cookie);
+                }
                 Response.Redirect("~/View/Home/Home.aspx");
                 return;
             }

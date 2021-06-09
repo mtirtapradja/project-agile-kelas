@@ -24,31 +24,13 @@ namespace project_agile_kelas.View.Home
         protected global::System.Web.UI.WebControls.GridView gvCatatan;
 
         /// <summary>
-        /// txtId control.
+        /// lblName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtId;
-
-        /// <summary>
-        /// txtUserId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserId;
-
-        /// <summary>
-        /// txtTypeId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTypeId;
+        protected global::System.Web.UI.WebControls.Label lblName;
 
         /// <summary>
         /// txtDescription control.
@@ -67,6 +49,15 @@ namespace project_agile_kelas.View.Home
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
+
+        /// <summary>
+        /// ddlTransactionType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTransactionType;
 
         /// <summary>
         /// lblError control.

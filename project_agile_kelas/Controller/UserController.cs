@@ -1,4 +1,5 @@
 ﻿using project_agile_kelas.Handler;
+using project_agile_kelas.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +59,16 @@ namespace project_agile_kelas.Controller
                 response = "Success!";
             }
             return response;
+        }
+        
+        public static User GetUser(string email, string password)
+        {
+            return UserHandler.GetUser(email, password);
+        }
+
+        public static User GetUserById(int id)
+        {
+            return UserHandler.GetUserById(id);
         }
     }
 }

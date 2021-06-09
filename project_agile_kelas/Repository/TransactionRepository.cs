@@ -18,6 +18,12 @@ namespace project_agile_kelas.Repository
         {
             return (from x in db.TransactionHeaders where x.transactionId == id select x).FirstOrDefault(); 
         }
+
+        public static List<TransactionType> getAllTransactionType()
+        {
+            return db.TransactionTypes.ToList();
+        }
+
         public static bool InsertTransaction(TransactionHeader newTransaction)
         {
             if (newTransaction != null)

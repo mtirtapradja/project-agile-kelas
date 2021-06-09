@@ -20,10 +20,20 @@ namespace project_agile_kelas.Handler
             return true;
         }
 
+        public static User GetUser(string email, string password)
+        {
+            return userRepo.getUser(email, password);
+        }
+
         public static User InsertUser(string fullName, string password, string email, int userRole)
         {
             User user = UserFactory.Create(fullName, password, email, userRole);
             return userRepo.InsertUser(user);
+        }
+
+        public static User GetUserById(int id)
+        {
+            return userRepo.getUserById(id);
         }
 
     }

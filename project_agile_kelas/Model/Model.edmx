@@ -19,11 +19,11 @@
           <Property Name="transactionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userId" Type="bigint" Nullable="false" />
           <Property Name="transactionTypeId" Type="int" Nullable="false" />
-          <Property Name="itemDescription" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="itemDescription" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="created_at" Type="date" />
-          <Property Name="updated_at" Type="date" />
-          <Property Name="deleted_at" Type="date" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="updated_at" Type="datetime" />
+          <Property Name="deleted_at" Type="datetime" />
         </EntityType>
         <EntityType Name="TransactionType">
           <Key>
@@ -103,13 +103,31 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Roles" EntityType="DatabaseModel.Role" />
+          <EntitySet Name="TransactionHeaders" EntityType="DatabaseModel.TransactionHeader" />
+          <EntitySet Name="TransactionTypes" EntityType="DatabaseModel.TransactionType" />
+          <EntitySet Name="Users" EntityType="DatabaseModel.User" />
+          <AssociationSet Name="FK_User_Role" Association="DatabaseModel.FK_User_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionHeader_TransactionType" Association="DatabaseModel.FK_TransactionHeader_TransactionType">
+            <End Role="TransactionType" EntitySet="TransactionTypes" />
+            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TransactionHeader_User" Association="DatabaseModel.FK_TransactionHeader_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="roleId" />
           </Key>
           <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="roleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+          <Property Name="roleName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="DatabaseModel.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="TransactionHeader">
           <Key>
@@ -118,13 +136,13 @@
           <Property Name="transactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userId" Type="Int64" Nullable="false" />
           <Property Name="transactionTypeId" Type="Int32" Nullable="false" />
-          <Property Name="itemDescription" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="itemDescription" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="created_at" Type="DateTime" Precision="0" />
-          <Property Name="updated_at" Type="DateTime" Precision="0" />
-          <Property Name="deleted_at" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="TransactionType" Relationship="Self.FK_TransactionHeader_TransactionType" FromRole="TransactionHeader" ToRole="TransactionType" />
-          <NavigationProperty Name="User" Relationship="Self.FK_TransactionHeader_User" FromRole="TransactionHeader" ToRole="User" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <Property Name="updated_at" Type="DateTime" Precision="3" />
+          <Property Name="deleted_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TransactionType" Relationship="DatabaseModel.FK_TransactionHeader_TransactionType" FromRole="TransactionHeader" ToRole="TransactionType" />
+          <NavigationProperty Name="User" Relationship="DatabaseModel.FK_TransactionHeader_User" FromRole="TransactionHeader" ToRole="User" />
         </EntityType>
         <EntityType Name="TransactionType">
           <Key>
@@ -132,26 +150,26 @@
           </Key>
           <Property Name="transactionTypeId" Type="Int32" Nullable="false" />
           <Property Name="transactionTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TransactionHeaders" Relationship="Self.FK_TransactionHeader_TransactionType" FromRole="TransactionType" ToRole="TransactionHeader" />
+          <NavigationProperty Name="TransactionHeaders" Relationship="DatabaseModel.FK_TransactionHeader_TransactionType" FromRole="TransactionType" ToRole="TransactionHeader" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="userId" />
           </Key>
           <Property Name="userId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userFullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="userPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="userEmail" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userFullName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="userPassword" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="userEmail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="userRole" Type="Int32" Nullable="false" />
           <Property Name="created_at" Type="DateTime" Precision="0" />
           <Property Name="updated_at" Type="DateTime" Precision="0" />
           <Property Name="deleted_at" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
-          <NavigationProperty Name="TransactionHeaders" Relationship="Self.FK_TransactionHeader_User" FromRole="User" ToRole="TransactionHeader" />
+          <NavigationProperty Name="Role" Relationship="DatabaseModel.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="TransactionHeaders" Relationship="DatabaseModel.FK_TransactionHeader_User" FromRole="User" ToRole="TransactionHeader" />
         </EntityType>
         <Association Name="FK_User_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Type="DatabaseModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="DatabaseModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
               <PropertyRef Name="roleId" />
@@ -162,8 +180,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TransactionHeader_TransactionType">
-          <End Role="TransactionType" Type="Self.TransactionType" Multiplicity="1" />
-          <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="*" />
+          <End Type="DatabaseModel.TransactionType" Role="TransactionType" Multiplicity="1" />
+          <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TransactionType">
               <PropertyRef Name="transactionTypeId" />
@@ -174,8 +192,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_TransactionHeader_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="TransactionHeader" Type="Self.TransactionHeader" Multiplicity="*" />
+          <End Type="DatabaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="DatabaseModel.TransactionHeader" Role="TransactionHeader" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="userId" />
@@ -185,25 +203,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Roles" EntityType="Self.Role" />
-          <EntitySet Name="TransactionHeaders" EntityType="Self.TransactionHeader" />
-          <EntitySet Name="TransactionTypes" EntityType="Self.TransactionType" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Roles" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TransactionHeader_TransactionType" Association="Self.FK_TransactionHeader_TransactionType">
-            <End Role="TransactionType" EntitySet="TransactionTypes" />
-            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TransactionHeader_User" Association="Self.FK_TransactionHeader_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="TransactionHeader" EntitySet="TransactionHeaders" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -212,44 +212,44 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="DatabaseModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="roleId" ColumnName="roleId" />
                 <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TransactionHeaders">
             <EntityTypeMapping TypeName="DatabaseModel.TransactionHeader">
               <MappingFragment StoreEntitySet="TransactionHeader">
-                <ScalarProperty Name="transactionId" ColumnName="transactionId" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
-                <ScalarProperty Name="itemDescription" ColumnName="itemDescription" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
-                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
                 <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="itemDescription" ColumnName="itemDescription" />
+                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="transactionId" ColumnName="transactionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TransactionTypes">
             <EntityTypeMapping TypeName="DatabaseModel.TransactionType">
               <MappingFragment StoreEntitySet="TransactionType">
-                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
                 <ScalarProperty Name="transactionTypeName" ColumnName="transactionTypeName" />
+                <ScalarProperty Name="transactionTypeId" ColumnName="transactionTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="DatabaseModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="userFullName" ColumnName="userFullName" />
-                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
-                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
-                <ScalarProperty Name="userRole" ColumnName="userRole" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
-                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
                 <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+                <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="userRole" ColumnName="userRole" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+                <ScalarProperty Name="userFullName" ColumnName="userFullName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
