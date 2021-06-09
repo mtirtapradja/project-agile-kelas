@@ -5,10 +5,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>HOME</h2>
     <br />
-    <asp:ScriptManager runat="server"></asp:ScriptManager>
+    <asp:ScriptManager runat="server" ></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <asp:GridView ID="gvCatatan" runat="server" AutoGenerateColumns="False">
+            <asp:GridView ID="gvCatatan"  runat="server" AutoGenerateColumns="False">
                 <Columns>
                     <asp:BoundField DataField="TransactionType.transactionTypeName" HeaderText="Transaction Type" SortExpression="TransactionType.transactionTypeName" />
                     <asp:BoundField DataField="price" HeaderText="Money" SortExpression="price" />
