@@ -14,27 +14,38 @@ namespace project_agile_kelas.View.Home
     {
 
         private User userAuth = null;
+        private List<TransactionHeader> currTable;
         protected void Page_Load(object sender, EventArgs e)
         {
             middleware();
             if (!IsPostBack)
             {
                 lblName.Text = "Welcome, " + userAuth.userFullName;
-                ddlTransactionType.DataSource = TransactionController.GetAllTransactionList();
-                ddlTransactionType.DataBind();
-                ddlTransactionType.DataTextField = "transactionTypeName";
-                ddlTransactionType.DataValueField = "transactionTypeId";
-                ddlTransactionType.DataBind();
+                initDropDown();
+                
             }
-            
+            initTable();
+        }
 
+        private void initTable()
+        {
+            currTable = TransactionController.GetAllTrasactionByUser((int)userAuth.userId);
+            gvCatatan.DataSource = currTable;
+            gvCatatan.DataBind();
+        }
+
+        private void initDropDown()
+        {
+            ddlTransactionType.DataSource = TransactionController.GetAllTransactionList();
+            ddlTransactionType.DataBind();
+            ddlTransactionType.DataTextField = "transactionTypeName";
+            ddlTransactionType.DataValueField = "transactionTypeId";
+            ddlTransactionType.DataBind();
         }
 
         private void middleware()
         {
-            User user = (User)Session["user"];
-            
-            if(user == null && Request.Cookies["user_auth"] == null)
+            if(Session["user"] == null && Request.Cookies["user_auth"] == null)
             {
                 Response.Redirect("~/View/Login/Login.aspx");
                 return;
@@ -47,8 +58,8 @@ namespace project_agile_kelas.View.Home
                 Response.Redirect("~/View/Login/Login.aspx");
                 return;
             }
-
-            if(user != null)
+            User user = (User)Session["user"];
+            if (user != null)
             {
                 userAuth = user;
             }
@@ -67,6 +78,9 @@ namespace project_agile_kelas.View.Home
             int typeId = int.Parse(transactionType);
             Debug.WriteLine("type idnya : " + typeId);
             TransactionController.InsertTransaction((int)userAuth.userId, typeId, desc, price);
+            initTable();
+            txtDescription.Text = "";
+            txtPrice.Text = "";
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)

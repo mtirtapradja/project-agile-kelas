@@ -10,6 +10,10 @@ namespace project_agile_kelas.Handler
 {
     public class TransactionHandler
     {
+        public static List<TransactionHeader> GetAllTrasactionByUser(int userId)
+        {
+            return TransactionRepository.GetAllTrasactionByUser(userId);
+        }
         public static List<TransactionType> GetAllTransactionType()
         {
             return TransactionRepository.getAllTransactionType();
