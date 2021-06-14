@@ -11,7 +11,7 @@
             <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server" placeholder="name@example.com" Width="500px"></asp:TextBox>
             <label for="floatingInput">Email address</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-3">
             <asp:TextBox CssClass="form-control" ID="txtPassword" TextMode="Password" runat="server" placeholder="Password" Width="500px"></asp:TextBox>
             <label for="floatingPassword">Password</label>
         </div>

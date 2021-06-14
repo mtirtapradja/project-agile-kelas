@@ -14,6 +14,11 @@ namespace project_agile_kelas.View
 
         }
 
+        protected void lbLogoHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/View/Home/Home.aspx");
+        }
+
         protected void lbRegister_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/View/Register/Register.aspx");
@@ -23,5 +28,24 @@ namespace project_agile_kelas.View
         {
             Response.Redirect("~/View/Login/Login.aspx");
         }
+
+        protected void lbAccount_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/View/Account/Account.aspx");
+        }
+
+        protected void lbLogout_Click(object sender, EventArgs e)
+        {
+            if (Request.Cookies["user_auth"] != null)
+            {
+                Response.Cookies["user_auth"].Expires = DateTime.Now.AddDays(-1);
+            }
+
+            Session.RemoveAll();
+
+            Response.Redirect("~/View/Login/Login.aspx");
+        }
+
+        
     }
 }

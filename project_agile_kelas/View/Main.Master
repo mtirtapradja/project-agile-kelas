@@ -13,23 +13,23 @@
 <body>
     <form id="form1" runat="server">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">PEMBUKUAN</a>
+            <asp:LinkButton CssClass="nav-link" Text="PEMBUKUAN" ID="lbLogoHome" OnClick="lbLogoHome_Click" runat="server" />
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">
-                            Home 
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
                     <li class="nav-item">
                          <asp:LinkButton CssClass="nav-link" Text="Register" ID="lbRegister" OnClick="lbRegister_Click" runat="server" />
                     </li>
                     <li class="nav-item">
                         <asp:LinkButton CssClass="nav-link" Text="Login" ID="lbLogin" OnClick="lbLogin_Click" runat="server" />
+                    </li>
+                    <li class="nav-item">
+                        <asp:LinkButton CssClass="nav-link" Text="Account" ID="lbAccount" OnClick="lbAccount_Click" runat="server" />
+                    </li>
+                    <li class="nav-item">
+                        <asp:LinkButton CssClass="nav-link" Text="Logout" ID="lbLogout" OnClick="lbLogout_Click" runat="server" />
                     </li>
                 </ul>
             </div>

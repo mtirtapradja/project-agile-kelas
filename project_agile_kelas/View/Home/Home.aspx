@@ -24,9 +24,9 @@
         </asp:UpdatePanel>
     </div>
     <div>
-        <asp:Label ID="lblName" runat="server" />
+        <asp:Label CssClass="display-4" ID="lblName" runat="server" />
     </div>
-
+    <br />
     <div>
         <nav class="navbar navbar-light bg-light">
             <div class="input-group">
@@ -59,7 +59,7 @@
             </div>
         </nav>
     </div>
-
+    <br />
     <div>
         <asp:Label ID="lblError" Text="" runat="server" />
         <asp:Button ID="btnInsert" CssClass="btn btn-primary mb-3" Text="Insert" OnClick="btnInsert_Click" runat="server" />
