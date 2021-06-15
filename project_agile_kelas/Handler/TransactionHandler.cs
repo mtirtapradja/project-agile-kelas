@@ -18,6 +18,18 @@ namespace project_agile_kelas.Handler
         {
             return TransactionRepository.getAllTransactionType();
         }
+
+        public static bool UpdateTransaction(TransactionHeader currTransaction)
+        {
+            return TransactionRepository.UpdateTransaction(currTransaction);
+        }
+
+            public static bool DeleteTransaction(TransactionHeader currTransaction)
+        {
+            
+            return TransactionRepository.DeleteTransaction(currTransaction);
+        }
+
         public static bool InsertTransaction(int userId, int typeId, string description, int price)
         {
             TransactionHeader tf = TransactionFactory.Create(userId, typeId, description, price);

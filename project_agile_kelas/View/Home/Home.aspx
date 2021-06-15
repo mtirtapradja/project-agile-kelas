@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/View/Main.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="project_agile_kelas.View.Home.Insert" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/View/Main.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="project_agile_kelas.View.Home.Insert" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%--<link href="HomeStyle.css" rel="stylesheet" />--%>
@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="HomeStyle.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>HOME</h2>
+    <div class="container">
+        <h2>HOME</h2>
     <br />
     <div>
         <asp:ScriptManager runat="server"></asp:ScriptManager>
@@ -66,5 +67,7 @@
         <asp:Button ID="btnUpdate" CssClass="btn btn-warning mb-3" Text="Update" OnClick="btnUpdate_Click" runat="server" />
         <asp:Button ID="btnDelete" CssClass="btn btn-danger mb-3" Text="Delete" OnClick="btnDelete_Click" runat="server" />
     </div>
+    </div>
+    
 
 </asp:Content>

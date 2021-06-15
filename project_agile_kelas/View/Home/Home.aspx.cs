@@ -15,6 +15,7 @@ namespace project_agile_kelas.View.Home
 
         private User userAuth = null;
         private List<TransactionHeader> currTable;
+        private TransactionHeader thEdit = null;
         protected void Page_Load(object sender, EventArgs e)
         {
             showNav();
@@ -107,12 +108,44 @@ namespace project_agile_kelas.View.Home
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            string desc = txtDescription.Text;
+            int price = int.Parse(txtPrice.Text);
+            string transactionType = ddlTransactionType.SelectedValue;
+            int typeId = int.Parse(transactionType);
+            thEdit.itemDescription = desc;
+            thEdit.price = price;
+            thEdit.transactionTypeId = typeId;
 
+            TransactionController.UpdateTransaction(thEdit);
+            initTable();
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void gvCatatan_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            Debug.WriteLine(e.RowIndex);
+            TransactionHeader th = currTable[e.RowIndex];
+            TransactionController.DeleteTransaction(th);
+            initTable();
+        }
+
+        protected void gvCatatan_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            Debug.WriteLine(e.NewEditIndex);
+            //thEdit = currTable[e.NewEditIndex]
+        }
+
+        protected void gvCatatan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow row = gvCatatan.SelectedRow;
+            thEdit = currTable[row.RowIndex];
+            txtDescription.Text = thEdit.itemDescription;
+            txtPrice.Text = thEdit.price.ToString();
+            ddlTransactionType.SelectedValue = thEdit.transactionTypeId.ToString();
         }
     }
 }
