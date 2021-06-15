@@ -2,6 +2,7 @@
 using project_agile_kelas.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -54,7 +55,7 @@ namespace project_agile_kelas.View
                         };
                         Response.Cookies.Add(cookie);
                     }
-
+                    Debug.WriteLine("lalala");
                     Session["user"] = user;
                     Response.Redirect("~/View/Home/Home.aspx");
                 }

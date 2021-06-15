@@ -29,6 +29,14 @@ namespace project_agile_kelas.Handler
             
             return TransactionRepository.DeleteTransaction(currTransaction);
         }
+        public static int sumAllIncome(int userId)
+        {
+            return TransactionRepository.sumAllIncome(userId);
+        }
+        public static int sumAllSpending(int userId)
+        {
+            return TransactionRepository.getAllSpending(userId);
+        }
 
         public static bool InsertTransaction(int userId, int typeId, string description, int price)
         {
