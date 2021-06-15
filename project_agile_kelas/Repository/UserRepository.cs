@@ -32,7 +32,7 @@ namespace project_agile_kelas.Repository
 
         public User getUserById(int id)
         {
-            return db.Users.Find(id);
+            return (from x in db.Users where x.userId == id select x).FirstOrDefault();
         }
 
         public User InsertUser(User user) 
