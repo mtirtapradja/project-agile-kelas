@@ -13,7 +13,22 @@ namespace project_agile_kelas.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            showNav();
+        }
 
+        private void showNav()
+        {
+            LinkButton button = this.Master.FindControl("lbRegister") as LinkButton;
+            button.Visible = true;
+
+            button = this.Master.FindControl("lbLogin") as LinkButton;
+            button.Visible = false;
+
+            button = this.Master.FindControl("lbAccount") as LinkButton;
+            button.Visible = false;
+
+            button = this.Master.FindControl("lbLogout") as LinkButton;
+            button.Visible = false;
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)

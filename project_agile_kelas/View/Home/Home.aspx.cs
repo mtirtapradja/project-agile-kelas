@@ -18,6 +18,7 @@ namespace project_agile_kelas.View.Home
         private TransactionHeader thEdit = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            showNav();
             middleware();
             if (!IsPostBack)
             {
@@ -26,6 +27,21 @@ namespace project_agile_kelas.View.Home
                 
             }
             initTable();
+        }
+
+        private void showNav()
+        {
+            LinkButton button = this.Master.FindControl("lbRegister") as LinkButton;
+            button.Visible = false;
+
+            button = this.Master.FindControl("lbLogin") as LinkButton;
+            button.Visible = false;
+            
+            button = this.Master.FindControl("lbAccount") as LinkButton;
+            button.Visible = true;
+            
+            button = this.Master.FindControl("lbLogout") as LinkButton;
+            button.Visible = true;
         }
 
         private void initTable()
@@ -51,7 +67,14 @@ namespace project_agile_kelas.View.Home
                 Response.Redirect("~/View/Login/Login.aspx");
                 return;
             }
-            string cookieValue = Request.Cookies["user_auth"].Value;
+
+            string cookieValue = "";
+
+            if (Request.Cookies["user_auth"] != null)
+            {
+                cookieValue = Request.Cookies["user_auth"].Value;
+            }
+
             int userId;
             bool isInt = int.TryParse(cookieValue, out userId);
             if (!isInt)
@@ -68,7 +91,6 @@ namespace project_agile_kelas.View.Home
             {
                 userAuth = UserController.GetUserById(userId);
             }
-
         }
 
         protected void btnInsert_Click(object sender, EventArgs e)

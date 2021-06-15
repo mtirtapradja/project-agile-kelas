@@ -59,7 +59,6 @@ namespace project_agile_kelas.View.Home
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
 
-
         /// <summary>
         /// ddlTransactionType control.
         /// </summary>

@@ -6,26 +6,23 @@
 
     <h2>Register</h2>
 
-    <div class="form-floating">
-        <%--<asp:Label Text="Name" runat="server" />--%>
-        <asp:TextBox CssClass="form-control" runat="server" Width="500px" ID="txtName"/>
-        <label for="floatingPassword">Name</label>
+    <div class="form-floating mb-3">
+        <asp:TextBox CssClass="form-control" ID="txtName" placeholder="Name" runat="server" Width="500px" />
+        <label for="floatingInput">Name</label>
     </div>
     <br />
-    <div class="form-floating">
-        <%--<asp:Label Text="Email" runat="server" />--%>
-        <asp:TextBox CssClass="form-control" runat="server" Width="500px" ID="txtEmail"/>
-        <label for="floatingPassword">Email</label>
+    <div class="form-floating mb-3">
+        <asp:TextBox CssClass="form-control" ID="txtEmail" placeholder="Email" runat="server" Width="500px"  />
+        <label for="floatingInput">Email</label>
     </div>
     <br />
-    <div class="form-floating">
-        <asp:TextBox CssClass="form-control" runat="server" ID="txtPassword" Width="500px" TextMode="Password"/>
+    <div class="form-floating mb-3">
+        <asp:TextBox CssClass="form-control" ID="txtPassword" placeholder="Password" TextMode="Password" runat="server" Width="500px"/>
         <label for="floatingPassword">Password</label>
     </div>
     <br />
-     <div class="form-floating">
-        <%--<asp:Label Text="Confirm Password" runat="server" />--%>
-        <asp:TextBox CssClass="form-control" runat="server" ID="txtConfirmPassword" Width="500px" TextMode="Password"/>
+     <div class="form-floating mb-3">
+        <asp:TextBox CssClass="form-control" ID="txtConfirmPassword" placeholder="Confirm Password" TextMode="Password" runat="server" Width="500px"/>
          <label for="floatingPassword">Confirm Password</label>
     </div>
     <br />
