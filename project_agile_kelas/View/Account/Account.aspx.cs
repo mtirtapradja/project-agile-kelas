@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -42,17 +43,54 @@ namespace project_agile_kelas.View.Account
 
         private void middleware()
         {
-            int userId = 0;
+            if (Session["user"] == null)
+            {
+                if (Request.Cookies["user_auth"] == null)
+                {
+                    Debug.WriteLine("masuk middle");
+                    Response.Redirect("~/View/Login/Login.aspx");
+                    return;
+                }
+            }
             User user = (User)Session["user"];
             if (user != null)
             {
+                Debug.WriteLine("masuk middle");
                 userAuth = user;
+                return;
             }
-            else
+            string cookieValue = "";
+
+            if (Request.Cookies["user_auth"] != null)
             {
-                userAuth = UserController.GetUserById(userId);
+                cookieValue = Request.Cookies["user_auth"].Value;
             }
+
+            long userId;
+            bool isInt = long.TryParse(cookieValue, out userId);
+            if (!isInt)
+            {
+                Debug.WriteLine("masuk middle ini");
+                Response.Redirect("~/View/Login/Login.aspx");
+                return;
+            }
+            userAuth = UserController.GetUserById((int)userId);
+
         }
+
+        //private void middleware()
+        //{
+        //    int userId = 0;
+        //    User user = (User)Session["user"];
+        //    if (user != null)
+        //    {
+        //        userAuth = user;
+        //    }
+        //    else
+        //    {
+        //        userAuth = UserController.GetUserById(userId);
+        //    }
+        //}
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {

@@ -15,6 +15,8 @@ namespace project_agile_kelas.View.Home
 
         private User userAuth = null;
         private List<TransactionHeader> currTable;
+        private int totalIncome = 0;
+        private int totalSpending = 0;
         private TransactionHeader thEdit = null;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,6 +24,7 @@ namespace project_agile_kelas.View.Home
             middleware();
             if (!IsPostBack)
             {
+                
                 lblName.Text = "Welcome, " + userAuth.userFullName;
                 initDropDown();
                 
@@ -47,8 +50,17 @@ namespace project_agile_kelas.View.Home
         private void initTable()
         {
             currTable = TransactionController.GetAllTrasactionByUser((int)userAuth.userId);
+            totalIncome = TransactionController.getAllIncome((int)userAuth.userId);
+            totalSpending = TransactionController.sumAllSpending((int)userAuth.userId);
+            txtTotalIncome.Text = totalIncome.ToString();
+            txtTotalSpending.Text = totalSpending.ToString();
             gvCatatan.DataSource = currTable;
             gvCatatan.DataBind();
+            gvCatatan.FooterRow.Cells[0].Text = "Total (Income - Spending)";
+            gvCatatan.FooterRow.Cells[1].Text = (totalIncome - totalSpending).ToString();
+            gvCatatan.FooterRow.Cells[2].Text = "";
+            gvCatatan.FooterRow.Cells[3].Text = "";
+
         }
 
         private void initDropDown()
@@ -62,12 +74,22 @@ namespace project_agile_kelas.View.Home
 
         private void middleware()
         {
-            if(Session["user"] == null && Request.Cookies["user_auth"] == null)
+            if(Session["user"] == null )
             {
-                Response.Redirect("~/View/Login/Login.aspx");
+                if(Request.Cookies["user_auth"] == null)
+                {
+                    Debug.WriteLine("masuk middle");
+                    Response.Redirect("~/View/Login/Login.aspx");
+                    return;
+                }
+            }
+            User user = (User)Session["user"];
+            if (user != null)
+            {
+                Debug.WriteLine("masuk middle");
+                userAuth = user;
                 return;
             }
-
             string cookieValue = "";
 
             if (Request.Cookies["user_auth"] != null)
@@ -75,22 +97,16 @@ namespace project_agile_kelas.View.Home
                 cookieValue = Request.Cookies["user_auth"].Value;
             }
 
-            int userId;
-            bool isInt = int.TryParse(cookieValue, out userId);
+            long userId;
+            bool isInt = long.TryParse(cookieValue, out userId);
             if (!isInt)
             {
+                Debug.WriteLine("masuk middle ini");
                 Response.Redirect("~/View/Login/Login.aspx");
                 return;
             }
-            User user = (User)Session["user"];
-            if (user != null)
-            {
-                userAuth = user;
-            }
-            else
-            {
-                userAuth = UserController.GetUserById(userId);
-            }
+            userAuth = UserController.GetUserById((int)userId);
+            
         }
 
         protected void btnInsert_Click(object sender, EventArgs e)

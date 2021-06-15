@@ -9,6 +9,14 @@ namespace project_agile_kelas.Controller
 {
     public class TransactionController
     {
+        public static int sumAllSpending(int userId)
+        {
+            return TransactionHandler.sumAllSpending(userId);
+        }
+        public static int getAllIncome(int userId)
+        {
+            return TransactionHandler.sumAllIncome(userId);
+        }
         public static List<TransactionHeader> GetAllTrasactionByUser(int userId)
         {
             return TransactionHandler.GetAllTrasactionByUser(userId);

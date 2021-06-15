@@ -10,6 +10,18 @@ namespace project_agile_kelas.Repository
     {
         private static DatabaseEntities db = new DatabaseEntities();
 
+        public static int getAllSpending(int userId)
+        {
+            List<TransactionHeader> head = db.TransactionHeaders.Where(x => x.userId == userId && x.transactionTypeId == 2).ToList();
+            return head.Sum(x => x.price);
+        }
+
+        public static int sumAllIncome(int userId)
+        {
+            List<TransactionHeader> head = db.TransactionHeaders.Where(x => x.userId == userId && x.transactionTypeId == 1).ToList();
+            return head.Sum(x => x.price);
+        }
+
         public static List<TransactionHeader> GetAllTrasactions()
         {
             return (from x in db.TransactionHeaders select x).ToList();
