@@ -19,6 +19,7 @@ namespace project_agile_kelas.View.Report
             TransactionReports reports = new TransactionReports();
             reports.SetDataSource(GetData(userId));
             crViewer1.ReportSource = reports;
+
         }
 
         private ReportDataset GetData(int userId)
