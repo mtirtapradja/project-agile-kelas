@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using project_agile_kelas.Model;
+using project_agile_kelas.Reports;
 using project_agile_kelas.Dataset;
 using project_agile_kelas.Controller;
-using project_agile_kelas.Reports;
 
 namespace project_agile_kelas.View.Report
 {
@@ -18,7 +18,7 @@ namespace project_agile_kelas.View.Report
             int userId = Convert.ToInt32(Session["userId"]);
             TransactionReports reports = new TransactionReports();
             reports.SetDataSource(GetData(userId));
-            crViewer1.ReportSource = reports;
+            CrystalReportViewer1.ReportSource = reports;
 
         }
 
