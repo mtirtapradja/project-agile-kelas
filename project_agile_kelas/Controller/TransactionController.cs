@@ -22,5 +22,14 @@ namespace project_agile_kelas.Controller
         {
             return TransactionHandler.InsertTransaction(userId, typeId, description, price);
         }
+
+        public static bool DeleteTransaction(TransactionHeader currTransaction)
+        {
+            return TransactionHandler.DeleteTransaction(currTransaction);
+        }
+        public static bool UpdateTransaction(TransactionHeader currTransaction)
+        {
+            return TransactionHandler.UpdateTransaction(currTransaction);
+        }
     }
 }
