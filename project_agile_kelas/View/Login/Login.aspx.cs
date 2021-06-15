@@ -40,23 +40,26 @@ namespace project_agile_kelas.View
 
             if (response.Equals(""))
             {
-                lblError.Text = "";
                 User user = UserController.GetUser(email, pass);
-                Session["user"] = user;
-                if (cbRemember.Checked)
+
+                if (user != null)
                 {
-                    HttpCookie cookie = new HttpCookie("user_auth")
+                    lblError.Text = "";
+                    if (cbRemember.Checked)
                     {
-                        Value = user.userId.ToString(),
-                        Expires = DateTime.Now.AddDays(1)
-                    };
-                    Response.Cookies.Add(cookie);
+                        HttpCookie cookie = new HttpCookie("user_auth")
+                        {
+                            Value = user.userId.ToString(),
+                            Expires = DateTime.Now.AddDays(1)
+                        };
+                        Response.Cookies.Add(cookie);
+                    }
+
+                    Session["user"] = user;
+                    Response.Redirect("~/View/Home/Home.aspx");
                 }
-                Response.Redirect("~/View/Home/Home.aspx");
-                return;
             }
             lblError.Text = response;
-
         }
     }
 }
