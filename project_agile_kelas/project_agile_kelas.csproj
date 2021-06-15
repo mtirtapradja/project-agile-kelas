@@ -103,7 +103,6 @@
   <ItemGroup>
     <Compile Include="Controller\TransactionController.cs" />
     <Compile Include="Controller\UserController.cs" />
-    <Compile Include="Dataset\ReportDataset.Designer.cs" />
     <Compile Include="Dataset\ReportDataset1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -141,9 +140,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reports\TransactionReports.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\TransactionReports1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
