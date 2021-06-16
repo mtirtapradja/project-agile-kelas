@@ -43,54 +43,57 @@ namespace project_agile_kelas.View.Account
 
         private void middleware()
         {
-            if (Session["user"] == null)
-            {
-                if (Request.Cookies["user_auth"] == null)
-                {
-                    Debug.WriteLine("masuk middle");
-                    Response.Redirect("~/View/Login/Login.aspx");
-                    return;
-                }
-            }
-            User user = (User)Session["user"];
-            if (user != null)
-            {
-                Debug.WriteLine("masuk middle");
-                userAuth = user;
-                return;
-            }
-            string cookieValue = "";
-
+            int userId;
             if (Request.Cookies["user_auth"] != null)
             {
-                cookieValue = Request.Cookies["user_auth"].Value;
+                userId = int.Parse(Request.Cookies["user_auth"].Value);
+                userAuth = UserController.GetUserById(userId);
             }
 
-            long userId;
-            bool isInt = long.TryParse(cookieValue, out userId);
-            if (!isInt)
+
+            if (Session["userId"] == null)
             {
-                Debug.WriteLine("masuk middle ini");
                 Response.Redirect("~/View/Login/Login.aspx");
-                return;
             }
-            userAuth = UserController.GetUserById((int)userId);
+            else if (Request.Cookies["user_auth"] == null)
+            {
+                userId = Convert.ToInt32(Session["userId"].ToString());
+                userAuth = UserController.GetUserById(userId);
+            }
+            //if (Session["user"] == null)
+            //{
+            //    if (Request.Cookies["user_auth"] == null)
+            //    {
+            //        Debug.WriteLine("masuk middle");
+            //        Response.Redirect("~/View/Login/Login.aspx");
+            //        return;
+            //    }
+            //}
+            //User user = (User)Session["user"];
+            //if (user != null)
+            //{
+            //    Debug.WriteLine("masuk middle");
+            //    userAuth = user;
+            //    return;
+            //}
+            //string cookieValue = "";
+
+            //if (Request.Cookies["user_auth"] != null)
+            //{
+            //    cookieValue = Request.Cookies["user_auth"].Value;
+            //}
+
+            //long userId;
+            //bool isInt = long.TryParse(cookieValue, out userId);
+            //if (!isInt)
+            //{
+            //    Debug.WriteLine("masuk middle ini");
+            //    Response.Redirect("~/View/Login/Login.aspx");
+            //    return;
+            //}
+            //userAuth = UserController.GetUserById((int)userId);
 
         }
-
-        //private void middleware()
-        //{
-        //    int userId = 0;
-        //    User user = (User)Session["user"];
-        //    if (user != null)
-        //    {
-        //        userAuth = user;
-        //    }
-        //    else
-        //    {
-        //        userAuth = UserController.GetUserById(userId);
-        //    }
-        //}
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {

@@ -24,10 +24,9 @@ namespace project_agile_kelas.View.Home
             middleware();
             if (!IsPostBack)
             {
-                
                 lblName.Text = "Welcome, " + userAuth.userFullName;
                 initDropDown();
-                
+
             }
             initTable();
         }
@@ -91,30 +90,7 @@ namespace project_agile_kelas.View.Home
                 userId = Convert.ToInt32(Session["userId"].ToString());
                 userAuth = UserController.GetUserById(userId);
             }
-            
-
-            //if (user != null)
-            //{
-            //    Debug.WriteLine("masuk middle");
-            //    userAuth = user;
-            //    return;
-            //}
-            //string cookieValue = "";
-
-            //if (Request.Cookies["user_auth"].Value != null)
-            //{
-            //    cookieValue = Request.Cookies["user_auth"].Value;
-            //}
-
-            //long userId;
-            //bool isInt = long.TryParse(cookieValue, out userId);
-            //if (!isInt)
-            //{
-            //    Debug.WriteLine("masuk middle ini");
-            //    
-            //    return;
-            //}
-            //userAuth = UserController.GetUserById((int)userId);
+           
 
         }
 
@@ -152,7 +128,7 @@ namespace project_agile_kelas.View.Home
 
         protected void gvCatatan_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            Debug.WriteLine(e.RowIndex);
+            Debug.WriteLine("row delete " + e.RowIndex);
             TransactionHeader th = currTable[e.RowIndex];
             TransactionController.DeleteTransaction(th);
             initTable();
