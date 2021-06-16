@@ -28,6 +28,9 @@ namespace project_agile_kelas.View
             button = this.Master.FindControl("lbAccount") as LinkButton;
             button.Visible = false;
 
+            button = this.Master.FindControl("lbReport") as LinkButton;
+            button.Visible = false;
+
             button = this.Master.FindControl("lbLogout") as LinkButton;
             button.Visible = false;
         }
@@ -56,7 +59,7 @@ namespace project_agile_kelas.View
                         Response.Cookies.Add(cookie);
                     }
                     Debug.WriteLine("lalala");
-                    Session["user"] = user;
+                    Session["userId"] = user.userId;
                     Response.Redirect("~/View/Home/Home.aspx");
                 }
             }
