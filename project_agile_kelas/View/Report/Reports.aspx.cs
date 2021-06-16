@@ -35,7 +35,7 @@ namespace project_agile_kelas.View.Report
             button.Visible = true;
 
             button = this.Master.FindControl("lbReport") as LinkButton;
-            button.Visible = true;
+            button.Visible = false;
 
             button = this.Master.FindControl("lbLogout") as LinkButton;
             button.Visible = true;

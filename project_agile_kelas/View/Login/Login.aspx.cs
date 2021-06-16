@@ -14,9 +14,9 @@ namespace project_agile_kelas.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Response.Cookies["user_auth"].Value != null)
+            if(Request.Cookies["user_auth"] != null)
             {
-                int userId = Convert.ToInt32(Response.Cookies["user_auth"].Value);
+                int userId = int.Parse(Request.Cookies["user_auth"].Value);
                 Session["userId"] = userId;
                 Response.Redirect("~/View/Home/Home.aspx");
             }

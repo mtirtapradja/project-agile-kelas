@@ -74,39 +74,48 @@ namespace project_agile_kelas.View.Home
 
         private void middleware()
         {
-            if(Session["user"] == null )
+            int userId;
+            if (Request.Cookies["user_auth"] != null)
             {
-                //if(Request.Cookies["user_auth"] == null)
-                //{
-                //    Debug.WriteLine("masuk middle");
-                //    Response.Redirect("~/View/Login/Login.aspx");
-                //    return;
-                //}
+                userId = int.Parse(Request.Cookies["user_auth"].Value);
+                userAuth = UserController.GetUserById(userId);
             }
-            User user = (User)Session["user"];
-            if (user != null)
-            {
-                Debug.WriteLine("masuk middle");
-                userAuth = user;
-                return;
-            }
-            string cookieValue = "";
+           
 
-            if (Request.Cookies["user_auth"].Value != null)
+            if (Session["userId"] == null) 
             {
-                cookieValue = Request.Cookies["user_auth"].Value;
-            }
-
-            long userId;
-            bool isInt = long.TryParse(cookieValue, out userId);
-            if (!isInt)
-            {
-                Debug.WriteLine("masuk middle ini");
                 Response.Redirect("~/View/Login/Login.aspx");
-                return;
             }
-            userAuth = UserController.GetUserById((int)userId);
+            else if (Request.Cookies["user_auth"] == null)
+            {
+                userId = Convert.ToInt32(Session["userId"].ToString());
+                userAuth = UserController.GetUserById(userId);
+            }
             
+
+            //if (user != null)
+            //{
+            //    Debug.WriteLine("masuk middle");
+            //    userAuth = user;
+            //    return;
+            //}
+            //string cookieValue = "";
+
+            //if (Request.Cookies["user_auth"].Value != null)
+            //{
+            //    cookieValue = Request.Cookies["user_auth"].Value;
+            //}
+
+            //long userId;
+            //bool isInt = long.TryParse(cookieValue, out userId);
+            //if (!isInt)
+            //{
+            //    Debug.WriteLine("masuk middle ini");
+            //    
+            //    return;
+            //}
+            //userAuth = UserController.GetUserById((int)userId);
+
         }
 
         protected void btnInsert_Click(object sender, EventArgs e)
