@@ -19,8 +19,11 @@
                             <asp:BoundField DataField="price" HeaderText="Money" SortExpression="price" />
                             <asp:BoundField DataField="itemDescription" HeaderText="Description" SortExpression="description" />
                             <asp:BoundField DataField="created_at" HeaderText="Created At" SortExpression="created_at" />
-
-                            <asp:CommandField ShowDeleteButton="true" ButtonType="Button" DeleteText="Delete" ItemStyle-CssClass="btn btn-danger mb-3" />
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnOrderShow" CssClass="btn btn-danger mb-3" Text="Delete" CommandName="Delete" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </ContentTemplate>
@@ -91,7 +94,6 @@
             <asp:Label ID="lblError" Text="" runat="server" />
             <asp:Button ID="btnInsert" CssClass="btn btn-primary mb-3" Text="Insert" OnClick="btnInsert_Click" runat="server" />
             <asp:Button ID="btnUpdate" CssClass="btn btn-warning mb-3" Text="Update" OnClick="btnUpdate_Click" runat="server" />
-            <asp:Button ID="btnDelete" CssClass="btn btn-danger mb-3" Text="Delete"  OnClick="btnDelete_Click" runat="server" />
         </div>
     </div>
 
