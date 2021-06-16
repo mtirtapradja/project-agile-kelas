@@ -14,7 +14,7 @@ namespace project_agile_kelas.View
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Response.Cookies["user_auth"] != null)
+            if(Response.Cookies["user_auth"].Value != null)
             {
                 int userId = Convert.ToInt32(Response.Cookies["user_auth"].Value);
                 Session["userId"] = userId;

@@ -76,12 +76,12 @@ namespace project_agile_kelas.View.Home
         {
             if(Session["user"] == null )
             {
-                if(Request.Cookies["user_auth"] == null)
-                {
-                    Debug.WriteLine("masuk middle");
-                    Response.Redirect("~/View/Login/Login.aspx");
-                    return;
-                }
+                //if(Request.Cookies["user_auth"] == null)
+                //{
+                //    Debug.WriteLine("masuk middle");
+                //    Response.Redirect("~/View/Login/Login.aspx");
+                //    return;
+                //}
             }
             User user = (User)Session["user"];
             if (user != null)
@@ -92,7 +92,7 @@ namespace project_agile_kelas.View.Home
             }
             string cookieValue = "";
 
-            if (Request.Cookies["user_auth"] != null)
+            if (Request.Cookies["user_auth"].Value != null)
             {
                 cookieValue = Request.Cookies["user_auth"].Value;
             }
