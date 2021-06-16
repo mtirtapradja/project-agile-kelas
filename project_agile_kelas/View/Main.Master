@@ -29,6 +29,9 @@
                         <asp:LinkButton CssClass="nav-link" Text="Account" ID="lbAccount" OnClick="lbAccount_Click" runat="server" />
                     </li>
                     <li class="nav-item">
+                        <asp:LinkButton CssClass="nav-link" Text="Report" ID="lbReport" OnClick="lbReport_Click" runat="server" />
+                    </li>
+                    <li class="nav-item">
                         <asp:LinkButton CssClass="nav-link" Text="Logout" ID="lbLogout" OnClick="lbLogout_Click" runat="server" />
                     </li>
                 </ul>
