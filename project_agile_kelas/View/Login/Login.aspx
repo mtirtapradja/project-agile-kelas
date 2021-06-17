@@ -4,8 +4,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="d-flex flex-column bd-highlight mb-3">
-
+    <div class="container">
         <h2>LOGIN PAGE</h2>
         <div class="form-floating mb-3">
             <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server" placeholder="name@example.com" Width="500px"></asp:TextBox>

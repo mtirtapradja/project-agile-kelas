@@ -15,11 +15,30 @@ namespace project_agile_kelas.View.Report
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            showNav();
+
             int userId = Convert.ToInt32(Session["userId"]);
             TransactionReports reports = new TransactionReports();
             reports.SetDataSource(GetData(userId));
             CrystalReportViewer1.ReportSource = reports;
+        }
 
+        private void showNav()
+        {
+            LinkButton button = this.Master.FindControl("lbRegister") as LinkButton;
+            button.Visible = false;
+
+            button = this.Master.FindControl("lbLogin") as LinkButton;
+            button.Visible = false;
+
+            button = this.Master.FindControl("lbAccount") as LinkButton;
+            button.Visible = true;
+
+            button = this.Master.FindControl("lbReport") as LinkButton;
+            button.Visible = false;
+
+            button = this.Master.FindControl("lbLogout") as LinkButton;
+            button.Visible = true;
         }
 
         private ReportDataset GetData(int userId)
@@ -46,8 +65,15 @@ namespace project_agile_kelas.View.Report
                 var transaction_header = dataset_transaction.NewRow();
                 transaction_header["userId"] = hd.userId;
                 transaction_header["itemDescription"] = hd.itemDescription;
+                
                 transaction_header["price"] = hd.price;
                 transaction_header["created_at"] = hd.created_at;
+
+                string typeName = "Spending";
+                if (hd.transactionId == 1) typeName = "Income";
+
+                transaction_header["transactionTypeId"] = typeName;
+
                 dataset_transaction.Rows.Add(transaction_header);
             }
 

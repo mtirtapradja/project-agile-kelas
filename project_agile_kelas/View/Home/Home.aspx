@@ -13,12 +13,18 @@
             <asp:ScriptManager runat="server"></asp:ScriptManager>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="gvCatatan" CssClass="table table-striped" runat="server" AutoGenerateColumns="False" ShowFooter="true">
+                    <asp:GridView ID="gvCatatan" CssClass="table table-striped" runat="server" OnSelectedIndexChanged="gvCatatan_SelectedIndexChanged" OnRowDeleting="gvCatatan_RowDeleting" AutoGenerateColumns="false" ShowFooter="true">
                         <Columns>
                             <asp:BoundField DataField="TransactionType.transactionTypeName" HeaderText="Transaction Type" SortExpression="TransactionType.transactionTypeName" />
                             <asp:BoundField DataField="price" HeaderText="Money" SortExpression="price" />
                             <asp:BoundField DataField="itemDescription" HeaderText="Description" SortExpression="description" />
                             <asp:BoundField DataField="created_at" HeaderText="Created At" SortExpression="created_at" />
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="btnOrderShow" CssClass="btn btn-danger mb-3" Text="Delete" CommandName="Delete" runat="server" />
+                                    <asp:LinkButton ID="LinkButton1" CssClass="btn btn-success mb-3" Text="Delete" CommandName="Delete" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </ContentTemplate>
@@ -89,7 +95,6 @@
             <asp:Label ID="lblError" Text="" runat="server" />
             <asp:Button ID="btnInsert" CssClass="btn btn-primary mb-3" Text="Insert" OnClick="btnInsert_Click" runat="server" />
             <asp:Button ID="btnUpdate" CssClass="btn btn-warning mb-3" Text="Update" OnClick="btnUpdate_Click" runat="server" />
-            <asp:Button ID="btnDelete" CssClass="btn btn-danger mb-3" Text="Delete" OnClick="btnDelete_Click" runat="server" />
         </div>
     </div>
 

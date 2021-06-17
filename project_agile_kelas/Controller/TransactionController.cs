@@ -17,6 +17,7 @@ namespace project_agile_kelas.Controller
         {
             return TransactionHandler.sumAllIncome(userId);
         }
+
         public static List<TransactionHeader> GetAllTrasactionByUser(int userId)
         {
             return TransactionHandler.GetAllTrasactionByUser(userId);
@@ -26,6 +27,7 @@ namespace project_agile_kelas.Controller
         {
             return TransactionHandler.GetAllTransactionType();
         }
+
         public static bool InsertTransaction(int userId, int typeId, string description, int price)
         {
             return TransactionHandler.InsertTransaction(userId, typeId, description, price);
@@ -35,6 +37,7 @@ namespace project_agile_kelas.Controller
         {
             return TransactionHandler.DeleteTransaction(currTransaction);
         }
+
         public static bool UpdateTransaction(TransactionHeader currTransaction)
         {
             return TransactionHandler.UpdateTransaction(currTransaction);

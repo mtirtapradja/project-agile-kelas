@@ -46,6 +46,9 @@ namespace project_agile_kelas.View
             Response.Redirect("~/View/Login/Login.aspx");
         }
 
-        
+        protected void lbReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/View/Report/Reports.aspx");
+        }
     }
 }

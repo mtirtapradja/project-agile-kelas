@@ -24,10 +24,9 @@ namespace project_agile_kelas.View.Home
             middleware();
             if (!IsPostBack)
             {
-                
                 lblName.Text = "Welcome, " + userAuth.userFullName;
                 initDropDown();
-                
+
             }
             initTable();
         }
@@ -74,39 +73,25 @@ namespace project_agile_kelas.View.Home
 
         private void middleware()
         {
-            if(Session["user"] == null )
-            {
-                if(Request.Cookies["user_auth"] == null)
-                {
-                    Debug.WriteLine("masuk middle");
-                    Response.Redirect("~/View/Login/Login.aspx");
-                    return;
-                }
-            }
-            User user = (User)Session["user"];
-            if (user != null)
-            {
-                Debug.WriteLine("masuk middle");
-                userAuth = user;
-                return;
-            }
-            string cookieValue = "";
-
+            int userId;
             if (Request.Cookies["user_auth"] != null)
             {
-                cookieValue = Request.Cookies["user_auth"].Value;
+                userId = int.Parse(Request.Cookies["user_auth"].Value);
+                userAuth = UserController.GetUserById(userId);
             }
+           
 
-            long userId;
-            bool isInt = long.TryParse(cookieValue, out userId);
-            if (!isInt)
+            if (Session["userId"] == null) 
             {
-                Debug.WriteLine("masuk middle ini");
                 Response.Redirect("~/View/Login/Login.aspx");
-                return;
             }
-            userAuth = UserController.GetUserById((int)userId);
-            
+            else if (Request.Cookies["user_auth"] == null)
+            {
+                userId = Convert.ToInt32(Session["userId"].ToString());
+                userAuth = UserController.GetUserById(userId);
+            }
+           
+
         }
 
         protected void btnInsert_Click(object sender, EventArgs e)
@@ -143,7 +128,7 @@ namespace project_agile_kelas.View.Home
 
         protected void gvCatatan_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            Debug.WriteLine(e.RowIndex);
+            Debug.WriteLine("row delete " + e.RowIndex);
             TransactionHeader th = currTable[e.RowIndex];
             TransactionController.DeleteTransaction(th);
             initTable();
