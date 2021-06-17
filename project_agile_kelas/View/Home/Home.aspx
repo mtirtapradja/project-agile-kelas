@@ -21,8 +21,8 @@
                             <asp:BoundField DataField="created_at" HeaderText="Created At" SortExpression="created_at" />
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnOrderShow" CssClass="btn btn-danger mb-3" Text="Delete" CommandName="Delete" runat="server" />
-                                    <asp:LinkButton ID="LinkButton1" CssClass="btn btn-success mb-3" Text="Delete" CommandName="Delete" runat="server" />
+                                    <asp:LinkButton ID="btnUpdate" CssClass="btn btn-warning mb-3" Text="Update" CommandName="Select" runat="server" />
+                                    <asp:LinkButton ID="btnDelete" CssClass="btn btn-danger mb-3" Text="Delete" CommandName="Delete" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -94,7 +94,7 @@
         <div>
             <asp:Label ID="lblError" Text="" runat="server" />
             <asp:Button ID="btnInsert" CssClass="btn btn-primary mb-3" Text="Insert" OnClick="btnInsert_Click" runat="server" />
-            <asp:Button ID="btnUpdate" CssClass="btn btn-warning mb-3" Text="Update" OnClick="btnUpdate_Click" runat="server" />
+            <%--<asp:Button ID="btnUpdate" CssClass="btn btn-warning mb-3" Text="Update" OnClick="btnUpdate_Click" runat="server" />--%>
         </div>
     </div>
 
