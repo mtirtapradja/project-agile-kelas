@@ -12,7 +12,6 @@ namespace project_agile_kelas.View.Home
 {
     public partial class Insert : System.Web.UI.Page
     {
-
         private User userAuth = null;
         private List<TransactionHeader> currTable;
         private int totalIncome = 0;
@@ -21,9 +20,9 @@ namespace project_agile_kelas.View.Home
         protected void Page_Load(object sender, EventArgs e)
         {
             showNav();
-            middleware();
             if (!IsPostBack)
             {
+                middleware();
                 lblName.Text = "Welcome, " + userAuth.userFullName;
                 initDropDown();
 
@@ -144,9 +143,19 @@ namespace project_agile_kelas.View.Home
         {
             GridViewRow row = gvCatatan.SelectedRow;
             thEdit = currTable[row.RowIndex];
-            txtDescription.Text = thEdit.itemDescription;
-            txtPrice.Text = thEdit.price.ToString();
-            ddlTransactionType.SelectedValue = thEdit.transactionTypeId.ToString();
+            //txtDescription.Text = thEdit.itemDescription;
+            //txtPrice.Text = thEdit.price.ToString();
+            //ddlTransactionType.SelectedValue = thEdit.transactionTypeId.ToString();
+
+            string desc = txtDescription.Text;
+            int price = int.Parse(txtPrice.Text);
+            string transactionType = ddlTransactionType.SelectedValue;
+            int typeId = int.Parse(transactionType);
+            thEdit.itemDescription = desc;
+            thEdit.price = price;
+            thEdit.transactionTypeId = typeId;
+
+            TransactionController.UpdateTransaction(thEdit);
         }
     }
 }
